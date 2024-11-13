@@ -3,7 +3,6 @@ import streamlit as st
 import math
 
 
-
 def find_lcm(numbers):
     """
     Find the Least Common Multiple (LCM) of a list of numbers.
@@ -27,11 +26,14 @@ def round_robin_scheduler(num_processes, time_quantum, burst_times):
     process_queue = [{'Process': f'P{i + 1}', 'Burst Time': burst_times[i], 'Remaining Time': burst_times[i]} for i in
                      range(num_processes)]
     time = 0
-    time_states = {f'Time {t}': [''] * num_processes for t in range(sum(burst_times) + 1)}
+    completed_tasks = 0
 
     # Continue until all processes are completed
-    while any(process['Remaining Time'] > 0 for process in process_queue):
+    while True:
         for i, process in enumerate(process_queue):
+            for items in process_queue:
+                if items['Remaining Time'] <= 0 and time % (num_processes * time_quantum) == 0:
+                    items['Remaining Time'] = items['Burst Time']
             # Check if the process has remaining time
             if process['Remaining Time'] > 0:
                 # Mark the process as "Ready" at the current time step if it’s about to run
@@ -53,9 +55,12 @@ def round_robin_scheduler(num_processes, time_quantum, burst_times):
                     time_states[f'Time {time}'][i] = 'Ready'
                 else:
                     time_states[f'Time {time}'][i] = 'Completed'
+                    completed_tasks += 1
+        if completed_tasks == num_processes:
+            break
+
 
     # Create a DataFrame with process names as rows and time steps as columns
-    status_df = pd.DataFrame(time_states, index=[process['Process'] for process in process_queue])
 
     # Replace all blank entries with "Ready"
     status_df.replace('', 'Ready', inplace=True)
@@ -81,6 +86,8 @@ def round_robin_scheduler(num_processes, time_quantum, burst_times):
     styled_df = status_df.style.map(style_status)
 
     return styled_df
+
+
 process_times = []
 st.header('Round Robin Scheduler')
 st.subheader("Select number of processes to run")
@@ -89,7 +96,7 @@ st.subheader("Select the time quantum")
 time_quantum = st.slider('Time units', min_value=1, max_value=10)
 st.subheader("Select the values for each processes")
 for i in range(num_processes):
-    num = st.number_input(f"Pick a time for Process {i + 1}", min_value=1, max_value= 99)
+    num = st.number_input(f"Pick a time for Process {i + 1}", min_value=1, max_value=99)
     process_times.append(num)
 result = round_robin_scheduler(num_processes, time_quantum, process_times)
 st.subheader("The visualization of the Round Robin Scheduler")
