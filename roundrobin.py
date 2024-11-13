@@ -78,7 +78,7 @@ def round_robin_scheduler(num_processes, time_quantum, burst_times):
             return ""  # No styling for other cases
 
     # Apply the styling
-    styled_df = status_df.style.applymap(style_status)
+    styled_df = status_df.style.map(style_status)
 
     return styled_df
 process_times = []
@@ -89,7 +89,7 @@ st.subheader("Select the time quantum")
 time_quantum = st.slider('Time units', min_value=1, max_value=10)
 st.subheader("Select the values for each processes")
 for i in range(num_processes):
-    num = st.number_input(f"Pick a time for Process {i + 1}", min_value=1, max_value=time_quantum + 10)
+    num = st.number_input(f"Pick a time for Process {i + 1}", min_value=1, max_value= 99)
     process_times.append(num)
 result = round_robin_scheduler(num_processes, time_quantum, process_times)
 st.subheader("The visualization of the Round Robin Scheduler")
