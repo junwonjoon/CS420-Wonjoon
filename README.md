@@ -24,6 +24,9 @@ To run this project locally:
 3. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
+   ```
+4. Run the program using terminal:
+   ```bash
    streamlit run Welcome_Page.py
    ```
 5. Open your browser and navigate to `http://localhost:3000` (or the specified address).
