@@ -2,6 +2,11 @@ import pandas as pd
 import streamlit as st
 import math
 
+st.set_page_config(
+    page_title="Welcome Page",
+    page_icon="👋",
+)
+st.sidebar.subheader("Select the headers above to explore different pages")
 
 
 def find_lcm(numbers):
