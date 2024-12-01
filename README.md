@@ -29,7 +29,7 @@ To run this project locally:
    ```bash
    streamlit run Welcome_Page.py
    ```
-5. Open your browser and navigate to `http://localhost:3000` (or the specified address).
+5. Open your browser and navigate to `http://localhost:(specified address by terminal/console)`.
 6. Input process parameters, select an algorithm, and view the scheduling results in real-time.
 
 
