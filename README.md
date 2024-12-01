@@ -22,10 +22,10 @@ To run this project locally:
    ```
 2. Navigate to the project directory:
 3. Install the required dependencies:
-  ```bash
-  pip install -r requirements.txt
-  streamlit run Welcome_Page.py
-  ```
+   ```bash
+   pip install -r requirements.txt
+   streamlit run Welcome_Page.py
+   ```
 5. Open your browser and navigate to `http://localhost:3000` (or the specified address).
 6. Input process parameters, select an algorithm, and view the scheduling results in real-time.
 
