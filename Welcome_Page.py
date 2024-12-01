@@ -17,7 +17,7 @@ This project provides an engaging, hands-on demonstration of various CPU schedul
 - **[Round Robin (RR)](https://cs420-scheduler-demo.streamlit.app/Round_Robin_Scheduling):** Time slices are shared equally among processes.
 - **Rate Monotonic Scheduling (RMS):** A real-time scheduling algorithm where processes with shorter periods are assigned higher priorities.
 
-To navigate please use the side bar on the left to view different scheduling algorithms.
+To navigate please use the side bar on the *left* to view different scheduling algorithms.
 
 ## Interactive Features
 - Visualize the scheduling process in real-time.
