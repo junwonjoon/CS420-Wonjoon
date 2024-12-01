@@ -1,5 +1,7 @@
 ### For CS420, Made By Wonjoon Jun
 # Interactive Demonstration of Schedulers
+## Streamlit Page
+Click [here](https://cs420-scheduler-demo.streamlit.app/) to for the web view of this repository.  
 
 ## Introduction
 Welcome to the **Interactive Demonstration of Schedulers**! This project is designed to provide an engaging and intuitive way to learn about various CPU scheduling algorithms used in operating systems. From basic scheduling methods to advanced real-time algorithms, this tool enables you to visualize, experiment, and compare their behaviors.
