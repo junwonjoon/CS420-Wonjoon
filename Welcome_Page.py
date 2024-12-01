@@ -14,7 +14,7 @@ st.markdown(
 This project provides an engaging, hands-on demonstration of various CPU scheduling algorithms, crucial for operating systems. Learn how schedulers determine the order in which processes execute to maximize efficiency and fairness.
 
 ## Topics Covered
-- **[Round Robin (RR)](pages/1_Round_Robin_Scheduling.py):** Time slices are shared equally among processes.
+- **[Round Robin (RR)](https://cs420-scheduler-demo.streamlit.app/Round_Robin_Scheduling):** Time slices are shared equally among processes.
 - **Rate Monotonic Scheduling (RMS):** A real-time scheduling algorithm where processes with shorter periods are assigned higher priorities.
 
 ## Interactive Features
