@@ -1,8 +1,7 @@
 import pandas as pd
 import streamlit as st
-from classLib import Process
+from classLib import Process, style_status
 from random import randint
-from classLib import style_status
 
 st.set_page_config(
     page_title="Round Robin Scheduling",

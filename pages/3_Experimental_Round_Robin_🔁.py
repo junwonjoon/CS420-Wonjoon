@@ -1,6 +1,6 @@
 import pandas as pd
 import streamlit as st
-from classLib import Process
+from classLib import Process, style_status
 from random import randint
 
 st.set_page_config(
@@ -47,27 +47,7 @@ def round_robin_scheduler_experimental(num_processes, time_quantum_list, executi
     data = [x.get_status() for x in processes_list]
     flattened_data = [dict(item for d in row for item in d.items()) for row in data]
     status_df = pd.DataFrame(flattened_data)
-
-    def style_status(val):
-        style_running = "color: #418fda"
-        style_ready = "color: #aadcee"
-        style_complete = "color: #4631ac"
-        style_waiting = "color: gray"
-
-        if "Running" in val:
-            return style_running
-        elif "Ready" in val:
-            return style_ready
-        elif "Ran and Got Completed" in val:
-            return style_complete
-        elif "Waiting" in val:
-            return style_waiting
-        else:
-            return ""
-
-    # Apply the styling
     styled_df = status_df.style.map(style_status)
-
     return styled_df
 
 
