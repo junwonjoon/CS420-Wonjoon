@@ -54,22 +54,22 @@ def round_robin_scheduler_experimental(num_processes, time_quantum_list, executi
 process_execution_times = []
 process_time_quantums = []
 st.session_state.setdefault("num_processes_RR_DT", 3)
-st.session_state.setdefault("time_quantum_RR_DT", 4)
+# st.session_state.setdefault("time_quantum_RR_DT", 4)
 st.session_state.setdefault("process_time_RR_DT", [randint(1, 5) for _ in range(10)])
 st.session_state.setdefault("process_time_quantum_RR_DT", [4 for _ in range(10)])
 
 st.title('Experimental RR Scheduling Demonstration')
 st.subheader("Step 1: Select number of processes to run")
 numProcesses = st.slider('Number of processes', min_value=1, max_value=10, value=st.session_state.num_processes_RR_DT)
-st.subheader("Step 2: Select the time quantum")
-timeQuantum = st.slider('Time units', min_value=1, max_value=10, value=st.session_state.time_quantum_RR_DT)
-pick_message = "Step 3: Select the execution time for each processes" if len(
-    process_execution_times) > 1 else "Step 3: Select the execution time and time quantum for each process"
+# st.subheader("Step 2: Select the time quantum")
+# timeQuantum = st.slider('Time units', min_value=1, max_value=10, value=st.session_state.time_quantum_RR_DT)
+pick_message = "Step 2: Select the execution time for each processes" if len(
+    process_execution_times) > 1 else "Step 2: Select the execution time and time quantum for each process"
 st.subheader(f"{pick_message}")
 process_execution_times.clear()
 process_time_quantums.clear()
 for i in range(numProcesses):
-    st.markdown(f"#### Step 3.{i + 1}: Choose Values for Process {i + 1}")
+    st.markdown(f"#### Step 2.{i + 1}: Choose Values for Process {i + 1}")
     num_execution_time = st.number_input(f"Pick a execution time for Process {i + 1}", min_value=1, max_value=99,
                                          value=st.session_state.process_time_RR_DT[i])
     num_time_quantum = st.number_input(f"Pick a time quantum for Process {i + 1}", min_value=1, max_value=99,
@@ -78,10 +78,10 @@ for i in range(numProcesses):
     process_time_quantums.append(num_time_quantum)
 
 st.divider()
-st.subheader("Step 4: Run Demonstration")
+st.subheader("Step 3: Run Demonstration")
 if st.button("Run Demonstration"):
     st.session_state["num_processes_RR_DT"] = numProcesses
-    st.session_state["time_quantum_RR_DT"] = timeQuantum
+    # st.session_state["time_quantum_RR_DT"] = timeQuantum
     for i in range(numProcesses):
         st.session_state["process_time_RR_DT"][i] = process_execution_times[i]
         st.session_state["process_time_quantum_RR_DT"][i] = process_time_quantums[i]
