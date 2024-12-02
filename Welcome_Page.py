@@ -8,7 +8,7 @@ st.set_page_config(
 st.sidebar.subheader("Select the headers above to explore different pages")
 st.markdown(
     """
-# Welcome to My Interactive Demonstration of Schedulers
+# Welcome to This Page
 
 ## Overview
 This project provides an engaging, hands-on demonstration of various CPU scheduling algorithms, crucial for operating systems. Learn how schedulers determine the order in which processes execute to maximize efficiency and fairness. 
@@ -17,7 +17,7 @@ This project provides an engaging, hands-on demonstration of various CPU schedul
 - **[Round Robin (RR)](https://cs420-scheduler-demo.streamlit.app/Round_Robin_Scheduling):** Time slices are shared equally among processes.
 - **Rate Monotonic Scheduling (RMS):** A real-time scheduling algorithm where processes with shorter periods are assigned higher priorities.
 
-To navigate please use the side bar on the *left* to view different scheduling algorithms.
+##### To navigate please use the side bar on the *left* to view different scheduling algorithms.
 
 ## Interactive Features
 - Visualize the scheduling process in real-time.
@@ -31,6 +31,9 @@ To navigate please use the side bar on the *left* to view different scheduling a
 ### GitHub Repository
 Click [here](https://github.com/junwonjoon/CS420-Wonjoon) to view the repository.
 
+#### Author
+Wonjoon Jun
 
-Dive into the world of schedulers and see how operating systems manage multitasking efficiently!
+#### With Special Thanks to
+Professor King
 """)
