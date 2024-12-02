@@ -12,8 +12,8 @@ Welcome to the **Interactive Demonstration of Schedulers**! This project is desi
 - **Algorithm Comparison:** Observe and analyze the differences in performance between scheduling techniques.
 
 ## Algorithms Covered
-1. **Round Robin (RR):** Time slices are shared equally among processes.
-2. **Rate Monotonic Scheduling (RMS):** A real-time scheduling algorithm where processes with shorter periods are assigned higher priorities.
+1. **[Round Robin (RR) Scheduling](https://cs420-scheduler-demo.streamlit.app/Round_Robin_Scheduling):** Time slices are shared equally among processes.
+2. **[Rate Monotonic Scheduling (RMS)](https://cs420-scheduler-demo.streamlit.app/Rate_Monotonic_Scheduling):** A real-time scheduling algorithm where processes with shorter periods are assigned higher priorities.
 3. **[Experimental Round Robin Scheduling](https://cs420-scheduler-demo.streamlit.app/Experimental_Round_Robin):** Who knows what will happen, if we add individual time quantum for each process. 
 
 
