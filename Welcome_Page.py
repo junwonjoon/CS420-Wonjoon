@@ -16,7 +16,7 @@ This project provides an engaging, hands-on demonstration of various CPU schedul
 ## Topics Covered
 - **[Round Robin (RR) Scheduling](https://cs420-scheduler-demo.streamlit.app/Round_Robin_Scheduling):** Time slices are shared equally among processes.
 - **[Rate Monotonic Scheduling (RMS)](https://cs420-scheduler-demo.streamlit.app/Rate_Monotonic_Scheduling):** A real-time scheduling algorithm where processes with shorter periods are assigned higher priorities.
-- **[Experimental Round Robin Scheduling](https://cs420-scheduler-demo.streamlit.app/Experimental_Round_Robin):** Who knows what will happen, if we add individual time quantum for each process. 
+- **[Experimental Round Robin Scheduling](https://cs420-scheduler-demo.streamlit.app/Experimental_Round_Robin):** Who knows what will happen, if we add individual time quantum for each process? 
 ##### To navigate please use the side bar on the *left* to view different scheduling algorithms.
 
 ## Interactive Features
