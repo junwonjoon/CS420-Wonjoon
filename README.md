@@ -31,7 +31,7 @@ To run this project locally:
    ```
 4. Run the program using terminal:
    ```bash
-   streamlit run Welcome_Page.py
+   streamlit run Welcome_Page_👋.py
    ```
 5. Open your browser and navigate to `http://localhost:(specified address by terminal/console)`.
 6. Input process parameters, select an algorithm, and view the scheduling results in real-time.
