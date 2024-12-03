@@ -97,7 +97,7 @@ process_execution_times = []
 periods = []
 st.markdown(f"#### Step 2.0: Choose the Time Range for the Scheduling Demonstration")
 max_display_time_range = st.number_input(f"Choose a Time Range", min_value=100, max_value=1500,
-                                         value=st.session_state.max_range_RMS) - 1
+                                         value=st.session_state.max_range_RMS)
 for i in range(numProcesses):
     st.markdown(f"#### Step 2.{i + 1}: Choose Values for Process {i + 1}")
     # Time budget for process
@@ -116,6 +116,11 @@ for i in range(numProcesses):
         exit()
     process_execution_times.append(process_execution_time)
     periods.append(period)
+list_of_utilization = [process_execution_times[i] / periods[i] for i in range(len(periods))]
+st.write(f"Current Utilization: {sum(list_of_utilization) * 100}%")
+if sum(list_of_utilization) > 1:
+    st.error("CPU utilization cannot be greater than 100%")
+    exit()
 
 st.divider()
 st.subheader("Step 3: Run the Scheduler")
@@ -135,5 +140,5 @@ if st.button("Run Scheduler"):
         "- **Waiting**: The process is waiting for its next period.\n"
     )
     tasks = [Task(f'Task {i + 1}', periods[i], process_execution_times[i]) for i in range(numProcesses)]
-    RMS_df = generate_RMS_df(tasks, max_display_time_range)
+    RMS_df = generate_RMS_df(tasks, max_display_time_range - 1)
     st.write(RMS_df)
