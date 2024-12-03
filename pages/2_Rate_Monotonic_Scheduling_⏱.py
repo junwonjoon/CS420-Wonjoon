@@ -27,7 +27,7 @@ class Task:
 def rms_scheduler(tasks, time_limit=150):
     current_time = 0
     task_queue = []
-    data = []
+    data_time_list = []
     while tasks:
         for task in tasks:
             if current_time % task.period == 0:
@@ -37,7 +37,7 @@ def rms_scheduler(tasks, time_limit=150):
 
         if task_queue:
             current_task = heapq.heappop(task_queue)
-            data.append(current_task.name)
+            data_time_list.append([current_time, current_task.name])
             current_time += 1
             current_task.remaining_time -= 1
             if current_task.remaining_time != 0:
@@ -46,7 +46,7 @@ def rms_scheduler(tasks, time_limit=150):
             current_time += 1
         if current_time > time_limit:
             break
-    return data
+    return data_time_list
 
 
 def generate_RMS_df(tasks, time_limit=150):
@@ -54,8 +54,13 @@ def generate_RMS_df(tasks, time_limit=150):
     processes_list = {"Time 0": ["Ready" for _ in range(len(tasks))]}
     RMS_df = pd.DataFrame(processes_list)
     time_counter = 1
-    for elem in data:
-        RMS_df[f'Time {time_counter}'] = ["Running" if str(i + 1) in elem else "Waiting" for i in range(len(tasks))]
+    for time in range(int(data[-1][0]) + 1):
+        df_elem = ["Ready" for _ in range(len(tasks))]
+        for i in range(len(tasks)):
+            for elem in data:
+                if str(i+1) in elem[1] and time == elem[0]:
+                    df_elem[i] = "Running"
+        RMS_df[f'Time {time+1}'] = df_elem
         time_counter += 1
     for i in range(len(tasks)):
         copy_of_row = RMS_df.iloc[i].copy()
