@@ -55,7 +55,7 @@ def generate_RMS_df(tasks, time_limit=150):
     RMS_df = pd.DataFrame(processes_list)
     time_counter = 1
     for time in range(int(data[-1][0]) + 1):
-        df_elem = ["Ready" for _ in range(len(tasks))]
+        df_elem = ["Waiting" for _ in range(len(tasks))]
         for i in range(len(tasks)):
             for elem in data:
                 if str(i+1) in elem[1] and time == elem[0]:
