@@ -114,10 +114,11 @@ for i in range(numProcesses):
     if process_execution_time >= period:
         st.error("Execution time cannot be greater or equal to the period.")
         exit()
+    st.write(f"Process {i + 1}'s CPU utilization: {(process_execution_time/period)*100}%")
     process_execution_times.append(process_execution_time)
     periods.append(period)
 list_of_utilization = [process_execution_times[i] / periods[i] for i in range(len(periods))]
-st.write(f"Current Utilization: {sum(list_of_utilization) * 100}%")
+st.markdown(f"##### Total Utilization of the CPU: {sum(list_of_utilization) * 100}%")
 if sum(list_of_utilization) > 1:
     st.error("CPU utilization cannot be greater than 100%")
     exit()
