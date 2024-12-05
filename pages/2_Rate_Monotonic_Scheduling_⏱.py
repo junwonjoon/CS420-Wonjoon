@@ -58,9 +58,9 @@ def generate_RMS_df(tasks, time_limit=150):
         df_elem = ["Waiting" for _ in range(len(tasks))]
         for i in range(len(tasks)):
             for elem in data:
-                if str(i+1) in elem[1] and time == elem[0]:
+                if str(i + 1) in elem[1] and time == elem[0]:
                     df_elem[i] = "Running"
-        RMS_df[f'Time {time+1}'] = df_elem
+        RMS_df[f'Time {time + 1}'] = df_elem
         time_counter += 1
     for i in range(len(tasks)):
         copy_of_row = RMS_df.iloc[i].copy()
@@ -90,8 +90,7 @@ numProcesses = st.slider("Choose the number of processes you want to schedule:",
 st.subheader("Step 2: Define Process Parameters")
 st.write(
     "For each process, set the **execution time** (time needed to complete) and "
-    "**period** (frequency of execution)."
-)
+    "**period** (frequency of execution).")
 
 process_execution_times = []
 periods = []
@@ -114,11 +113,11 @@ for i in range(numProcesses):
     if process_execution_time >= period:
         st.error("Execution time cannot be greater or equal to the period.")
         exit()
-    st.write(f"Process {i + 1}'s CPU utilization: {round(((process_execution_time/period)*100),2)}%")
+    st.write(f"Process {i + 1}'s CPU utilization: {round(((process_execution_time / period) * 100), 2)}%")
     process_execution_times.append(process_execution_time)
     periods.append(period)
 list_of_utilization = [process_execution_times[i] / periods[i] for i in range(len(periods))]
-st.markdown(f"##### Total Utilization of the CPU: {round((sum(list_of_utilization) * 100),2)}%")
+st.markdown(f"##### Total Utilization of the CPU: {round((sum(list_of_utilization) * 100), 2)}%")
 if sum(list_of_utilization) > 1:
     st.error("CPU utilization cannot be greater than 100%")
     exit()
