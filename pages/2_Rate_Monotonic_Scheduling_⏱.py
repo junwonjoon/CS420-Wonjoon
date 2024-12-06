@@ -118,8 +118,9 @@ for i in range(numProcesses):
     periods.append(period)
 list_of_utilization = [process_execution_times[i] / periods[i] for i in range(len(periods))]
 st.markdown(f"##### Total Utilization of the CPU: {round((sum(list_of_utilization) * 100), 2)}%")
-if sum(list_of_utilization) > 1:
-    st.error("CPU utilization cannot be greater than 100%")
+if sum(list_of_utilization) > (numProcesses * (2 ** (1 / numProcesses)) - 1):
+    st.error(
+        f"CPU utilization cannot be greater than {(numProcesses * (2 ** (1 / numProcesses)) - 1)}% with current set of Processes")
     exit()
 
 st.divider()
