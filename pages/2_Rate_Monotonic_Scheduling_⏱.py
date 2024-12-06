@@ -3,12 +3,30 @@ import streamlit as st
 import heapq
 from classLib import style_status
 from random import randint
+from math import gcd
+from functools import reduce
 
 st.set_page_config(
     page_title="Rate Monotonic Scheduling",
     page_icon="⏱️",
 )
 st.sidebar.subheader("Select the headers above to explore different pages")
+
+
+def lcm_of_list(numbers):
+    """
+    Find the Least Common Multiple (LCM) of a list of integers.
+
+    :param numbers: List of integers
+    :return: Integer representing the LCM
+    """
+    if not numbers:
+        raise ValueError("The list of numbers cannot be empty.")
+
+    def lcm(a, b):
+        return abs(a * b) // gcd(a, b)
+
+    return reduce(lcm, numbers)
 
 
 # The basis of RMS was obtained from https://github.com/floo-bar/Rate-Monotonic-Scheduling/blob/master/rate_mono.py
@@ -95,7 +113,7 @@ st.write(
 process_execution_times = []
 periods = []
 st.markdown(f"#### Step 2.0: Choose the Time Range for the Scheduling Demonstration")
-max_display_time_range = st.number_input(f"Choose a Time Range", min_value=100, max_value=1500,
+max_display_time_range = st.number_input(f"Choose a Time Range", min_value=10, max_value=1500,
                                          value=st.session_state.max_range_RMS)
 for i in range(numProcesses):
     st.markdown(f"#### Step 2.{i + 1}: Choose Values for Process {i + 1}")
@@ -118,10 +136,27 @@ for i in range(numProcesses):
     periods.append(period)
 list_of_utilization = [process_execution_times[i] / periods[i] for i in range(len(periods))]
 st.markdown(f"##### Total Utilization of the CPU: {round((sum(list_of_utilization) * 100), 2)}%")
-if sum(list_of_utilization) > (numProcesses * ((2 ** (1 / numProcesses)) - 1)) or sum(list_of_utilization) > 1:
-    st.error(
-        f"CPU utilization cannot be greater than {round((numProcesses * ((2 ** (1 / numProcesses)) - 1)*100),2) if (numProcesses * ((2 ** (1 / numProcesses)) - 1)*100) < 100 else 100}% with current set of Processes")
-    exit()
+# st.markdown(f"##### Lowest Common Multiple of Periods: {lcm_of_list(periods)}")
+
+valid_utilization = (numProcesses * ((2 ** (1 / numProcesses)) - 1))
+if sum(list_of_utilization) > valid_utilization or sum(list_of_utilization) > 1:
+    if sum(list_of_utilization) <= 1:
+        st.latex(r"""U = \sum_{i=1}^{n} \frac{C_i}{T_i} \leq n \left( 2^{\frac{1}{n}} - 1 \right)""")
+        st.markdown("""
+                    - **U** is the processor utilization
+                    - **n** is the number of processes in the process set
+                    - **Cᵢ** is the computation time of the process
+                    - **Tᵢ** is the time period for the process to run
+                    """)
+        st.error(
+            f"CPU utilization cannot be greater than {round(valid_utilization * 100, 2)}% "
+            f"with current set of processes for it to correctly work in the real world!")
+        on = st.toggle("Ignore this warning")
+        if not on:
+            exit()
+    else:
+        st.error(f"CPU utilization cannot be greater than 100%!")
+        exit()
 
 st.divider()
 st.subheader("Step 3: Run the Scheduler")
