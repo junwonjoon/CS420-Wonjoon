@@ -1,4 +1,4 @@
-### For CS420, Made By Wonjoon Jun
+### For CS420, Made By Wonjoon Jun (Please report any problems to junwonjoon41@gmail.com)
 # Interactive Demonstration of Schedulers
 ## Streamlit Page
 Click [here](https://cs420-scheduler-demo.streamlit.app/) for the web view of this repository.  
