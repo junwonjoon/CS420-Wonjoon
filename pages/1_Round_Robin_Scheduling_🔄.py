@@ -56,14 +56,14 @@ st.session_state.setdefault("time_quantum_RR", 4)
 st.session_state.setdefault("process_time_RR", [randint(1, 5) for _ in range(10)])
 st.title('Round Robin (RR) Scheduling Demonstration')
 st.subheader("Step 1: Select number of processes to run")
-numProcesses = st.slider('Number of processes', min_value=1, max_value=10, value=st.session_state.num_processes_RR)
+numProcesses = st.slider("Choose the number of processes you want to schedule:", min_value=1, max_value=10, value=st.session_state.num_processes_RR)
 st.subheader("Step 2: Select the time quantum")
-timeQuantum = st.slider('Time units', min_value=1, max_value=10, value=st.session_state.time_quantum_RR)
+timeQuantum = st.slider('Choose the time quantum:', min_value=1, max_value=10, value=st.session_state.time_quantum_RR)
 pick_message = "Step 3: Select the execution time for each processes" if len(
     processTimes) > 1 else "Step 3: Select the execution time for each process"
 st.subheader(f"{pick_message}")
 for i in range(numProcesses):
-    num = st.number_input(f"Pick a time for Process {i + 1}", min_value=1, max_value=99,
+    num = st.number_input(f"Pick a time for Process {i + 1}:", min_value=1, max_value=99,
                           value=st.session_state.process_time_RR[i])
     processTimes.append(num)
 st.divider()

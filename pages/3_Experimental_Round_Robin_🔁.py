@@ -60,9 +60,7 @@ st.session_state.setdefault("process_time_quantum_RR_DT", [4 for _ in range(10)]
 
 st.title('Experimental RR Scheduling Demonstration')
 st.subheader("Step 1: Select number of processes to run")
-numProcesses = st.slider('Number of processes', min_value=1, max_value=10, value=st.session_state.num_processes_RR_DT)
-# st.subheader("Step 2: Select the time quantum")
-# timeQuantum = st.slider('Time units', min_value=1, max_value=10, value=st.session_state.time_quantum_RR_DT)
+numProcesses = st.slider("Choose the number of processes you want to schedule:", min_value=1, max_value=10, value=st.session_state.num_processes_RR_DT)
 pick_message = "Step 2: Select the execution time for each processes" if len(
     process_execution_times) > 1 else "Step 2: Select the execution time and time quantum for each process"
 st.subheader(f"{pick_message}")
@@ -70,9 +68,9 @@ process_execution_times.clear()
 process_time_quantums.clear()
 for i in range(numProcesses):
     st.markdown(f"#### Step 2.{i + 1}: Choose Values for Process {i + 1}")
-    num_execution_time = st.number_input(f"Pick a execution time for Process {i + 1}", min_value=1, max_value=99,
+    num_execution_time = st.number_input(f"Pick a execution time for Process {i + 1}:", min_value=1, max_value=99,
                                          value=st.session_state.process_time_RR_DT[i])
-    num_time_quantum = st.number_input(f"Pick a time quantum for Process {i + 1}", min_value=1, max_value=99,
+    num_time_quantum = st.number_input(f"Pick a time quantum for Process {i + 1}:", min_value=1, max_value=99,
                                        value=st.session_state.process_time_quantum_RR_DT[i])
     process_execution_times.append(num_execution_time)
     process_time_quantums.append(num_time_quantum)

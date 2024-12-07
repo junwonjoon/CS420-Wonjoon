@@ -113,7 +113,7 @@ st.write(
 process_execution_times = []
 periods = []
 st.markdown(f"#### Step 2.0: Choose the Time Range for the Scheduling Demonstration")
-max_display_time_range = st.number_input(f"Choose a Time Range", min_value=10, max_value=1500,
+max_display_time_range = st.number_input(f"Choose a Time Range:", min_value=10, max_value=1500,
                                          value=st.session_state.max_range_RMS)
 for i in range(numProcesses):
     st.markdown(f"#### Step 2.{i + 1}: Choose Values for Process {i + 1}")
